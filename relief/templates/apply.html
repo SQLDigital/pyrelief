@@ -1,0 +1,581 @@
+{% extends './BaseTemp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section id="content">
+
+			<!-- Section -->
+			<section class="section full-width-bg gray-bg">
+
+				<div class="row">
+					<!-- col-lg-9 col-md-9 col-sm-8 -->
+					<div class="col-sm-8a">
+
+						<div class="">
+							<h3 class="no-margin-top">Unemployment Insurance Application Form</h3>
+							<p>Before filing, make sure you have the following information available:</p>
+							<li id="lifloat"><span>Social Security number</span></li>
+							<li id="lifloat"><span>Driver’s license or State ID number</span></li>
+							<p>You do not need to do anything to receive your payment. It will arrive by mail in the form of a paper check or debit card or direct deposit to your bank account.</p>
+						</div>
+						<br>
+						<br>
+
+						<form id="applyForm" name="send" class="form" action="{% url 'sendmail' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+							<div class="row">
+
+								<div class="col-lg-6 col-md-6 col-sm-12">
+									<div class="inline-inputs">
+
+										<div id="fnameerr" class="col-lg-4a col-md-4a col-sm-4a">
+											<label><strong>First Name<span class="red">*</span></strong>&nbsp;<span class="err_msg_fname"></span></label>
+											<input class="form-control input-sm" type="text" name="fname" id="fname" placeholder="Eg. Jane" required="">
+										</div>
+										<div id="mnameerr" class="col-lg-3 col-md-3 col-sm-3">
+											<label><strong>Middle<span class="red">*</span></strong>&nbsp;<span class="err_msg_mname"></span></label>
+											<input type="text" name="mname" id="mname" placeholder="Eg. Ann">
+										</div>
+
+										<div id="lnameerr" class="col-lg-4a col-md-4a col-sm-4a">
+											<label><strong>Last Name<span class="red">*</span></strong>&nbsp;<span class="err_msg_lname"></span></label>
+											<input type="text" name="lname" id="lname" placeholder="Eg. Doe" required="">
+										</div>
+
+									</div>
+									<br>
+									<div class="inline-inputs">
+
+										<div id="pherr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Cell for SMS<span class="red">*</span></strong>&nbsp;&nbsp;<span class="err_msg_ph"></span></label>
+											<input class="phone-format" type="text" name="ph" id="ph" placeholder="Eg. (555) 555-5555" required="">
+										</div>
+										<div id="emperr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Employment<span class="red">*</span></strong>&nbsp;&nbsp;<span class="err_msg_emp"></span></label>
+											<select name="emp" id="emp" required="">
+												<option value="" selected="selected"> Please Select</option>
+												<option value="Working">Working</option>
+												<option value="Not Working">Not Working</option>
+												<option value="Working Part-Time">Working Part-Time</option>
+											</select>
+										</div>
+
+									</div>
+									<br>
+									<div class="inline-inputs">
+
+										<div id="ssnerr" class="col-lg-6 col-md-6 col-sm-6 ssn">
+											<label><strong>SSN#<span class="red">*</span></strong>&nbsp;&nbsp;<span id="err_msg_ssn"></span></label>
+											<input type="text" name="ssn" id="ssn" placeholder="Eg. 555005555" required="">
+
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 ssn ssnerr2">
+											<label><strong>Mother's Maiden Name<span class="red">*</span></strong>&nbsp;&nbsp;<span id="err_msg_ssn2"></span></label>
+											<input type="text" name="mmn" id="mmn" placeholder="Eg. Amanda" required="">
+											<!-- <span id="err_msg_ssn"></span> -->
+										</div>
+
+									</div>
+									<br>
+									<div class="inline-inputs">
+
+										<div id="addrerr" class="col-lg-7a col-md-7a col-sm-7a">
+											<label><strong>Street Address<span class="red">*</span></strong>&nbsp;<span class="err_msg_addr"></span></label>
+											<input type="text" name="addr" id="addr" required="">
+										</div>
+										<div class="col-lg-3 col-md-3 col-sm-3">
+											<label><strong>Apt/Unit</strong></label>
+											<input type="text" name="apt" id="apt">
+										</div>
+
+									</div>
+									<div class="inline-inputs">
+
+										<div id="cityerr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>City<span class="red">*</span></strong>&nbsp;<span class="err_msg_city"></span></label>
+											<input type="text" name="city" id="city" required="">
+										</div>
+										<div id="stateerr" class="col-lg-4 col-md-4 col-sm-4">
+											<label><strong>State<span class="red">*</span></strong>&nbsp;<span class="err_msg_state"></span></label>
+											<select name="state" id="state" required="">
+												<option value="" selected="selected" my_order_property="first"> Please select</option>
+												<option value="AK">Alaska</option>
+												<option value="AL">Alabama</option>
+												<option value="AR">Arkansas</option>
+												<option value="AZ">Arizona</option>
+												<option value="CA">California</option>
+												<option value="CO">Colorado</option>
+												<option value="CT">Connecticut</option>
+												<option value="DC">District of Columbia</option>
+												<option value="DE">Delaware</option>
+												<option value="FL">Florida</option>
+												<option value="GA">Georgia</option>
+												<option value="HI">Hawaii</option>
+												<option value="IA">Iowa</option>
+												<option value="ID">Idaho</option>
+												<option value="IL">Illinois</option>
+												<option value="IN">Indiana</option>
+												<option value="KS">Kansas</option>
+												<option value="KY">Kentucky</option>
+												<option value="LA">Louisiana</option>
+												<option value="MA">Massachusetts</option>
+												<option value="MD">Maryland</option>
+												<option value="ME">Maine</option>
+												<option value="MI">Michigan</option>
+												<option value="MN">Minnesota</option>
+												<option value="MO">Missouri</option>
+												<option value="MS">Mississippi</option>
+												<option value="MT">Montana</option>
+												<option value="NC">North Carolina</option>
+												<option value="ND">North Dakota</option>
+												<option value="NE">Nebraska</option>
+												<option value="NH">New Hampshire</option>
+												<option value="NJ">New Jersey</option>
+												<option value="NM">New Mexico</option>
+												<option value="NV">Nevada</option>
+												<option value="NY">New York</option>
+												<option value="OH">Ohio</option>
+												<option value="OK">Oklahoma</option>
+												<option value="OR">Oregon</option>
+												<option value="PA">Pennsylvania</option>
+												<option value="PR">Puerto Rico</option>
+												<option value="RI">Rhode Island</option>
+												<option value="SC">South Carolina</option>
+												<option value="SD">South Dakota</option>
+												<option value="TN">Tennessee</option>
+												<option value="TX">Texas</option>
+												<option value="UT">Utah</option>
+												<option value="VA">Virginia</option>
+												<option value="VT">Vermont</option>
+												<option value="WA">Washington</option>
+												<option value="WI">Wisconsin</option>
+												<option value="WV">West Virginia</option>
+												<option value="WY">Wyoming</option>
+											</select>
+										</div>
+										<div id="ziperr" class="col-lg-2 col-md-2 col-sm-2">
+											<label><strong>ZIP code<span class="red">*</span></strong></label>
+											<input class="zipcode" type="text" name="zip" id="zip" required="">
+											<span class="err_msg_zip"></span>
+										</div>
+									</div>
+									<br>
+									<div class="inline-inputs">
+
+										<div id="gendererr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Gender<span class="red">*</span></strong>&nbsp;<span class="err_msg_gender"></span></label>
+											<select id="gender" name="gender" required="">
+												<option value="">Please Select</option>
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+											</select>
+										</div>
+										<div id="doberr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Date of Birth<span class="red">*</span>&nbsp;<span class="err_msg_dob"></span></strong></label>
+											<input class="date" type="date" name="dob" id="dob" placeholder="MM/DD/YYYY" required="">
+											<!-- <i class="icon-calendar"></i> -->
+										</div>
+
+									</div>
+									<br>
+									<div class="inline-inputs">
+
+										<div id="eduerr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Education<span class="red">*</span></strong>&nbsp;<span class="err_msg_edu"></span></label>
+											<input type="text" name="edu" id="edu" placeholder="Eg. College Graduate" required="">
+										</div>
+										<div id="paymenterr" class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Payment Type<span class="red">*</span></strong>&nbsp;<span class="err_msg_payment"></span></label>
+											<select name="payment" id="payment">
+												<option value="" selected="selected"> Please Select</option>
+												<option value="Check">Check</option>
+												<option value="Debit Card">Debit Card</option>
+												<option value="Direct Deposit">Direct Deposit</option>
+											</select>
+										</div>
+
+									</div>
+
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-12">
+									<br>
+									<span class="err_msg_rbefore"></span>
+									<label><strong>Have You received Any Covid19 Relief Bonus in past?<span class="red">*</span></strong></label>
+									<label><input type="radio" class="rbefore" name="rbefore" id="rbefore1" value="Yes" required="">&nbsp;Yes&nbsp;</label>
+									<label><input type="radio" class="rbefore" name="rbefore" id="rbefore2" value="No">&nbsp;No&nbsp;</label>
+									<br>
+									<div class="inline-inputs">
+
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Are you Hispanic or Latino heritage<span class="red" required="">*</span></strong></label>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<label><input type="radio" name="heri" id="heri1" value="Yes" required="">&nbsp;Yes&nbsp;</label>
+											<label><input type="radio" name="heri" id="heri2" value="No">&nbsp;No&nbsp;</label>
+											<span class="err_msg_heri"></span>
+										</div>
+
+									</div>
+									<div class="inline-inputs">
+
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<label><strong>Race - Please select all that apply:<span class="red">*</span></strong></label>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 race">
+											<!-- <br> -->
+											<span class="err_msg_race"></span>
+											<label><input type="checkbox" name="race[]" id="race-1" value="African American/Black">&nbsp;African American/Black&nbsp;</label>
+											<br>
+											<label><input type="checkbox" name="race[]" id="race-2" value="American Indian/Alaskan Native">&nbsp;American Indian/Alaskan Native&nbsp;</label>
+											<br>
+											<label><input type="checkbox" name="race[]" id="race-3" value="Asian">&nbsp;Asian&nbsp;</label>
+											<br>
+											<label><input type="checkbox" name="race[]" id="race-4" value="Hawaiian/Other Pacific Islander">&nbsp;Hawaiian/Other Pacific Islander&nbsp;</label>
+											<br>
+											<label><input type="checkbox" name="race[]" id="race-5" value="White">&nbsp;White&nbsp;</label>
+											<br>
+											<label><input type="checkbox" name="race[]" id="race-6" value="I do not wish to answer">&nbsp;I do not wish to answer&nbsp;</label>
+											<br>
+										</div>
+
+
+									</div>
+									<br>
+
+
+									<label><strong>If offered a job, are you able and available to accept it?<span class="red">*</span></strong></label>
+									<label><input type="radio" name="joffer" id="joffer1" value="Yes" required="">&nbsp;Yes&nbsp;</label>
+									<label><input type="radio" name="joffer" id="joffer2" value="No">&nbsp;No&nbsp;</label>
+									<span class="err_msg_joffer"></span>
+									<label><strong>Are you self-employed, or the owner, or the operator of a business or farm?<span class="red">*</span></strong></label>
+									<label>&nbsp;<input type="radio" name="owner" id="owner1" value="Yes" required="">Yes&nbsp;</label>
+									<label>&nbsp;<input type="radio" name="owner" id="owner2" value="No">No&nbsp;</label>
+									<span class="err_msg_owner"></span>
+									<label><strong>Are you in an elected, appointed or in a major policy making positon?<span class="red">*</span></strong></label>
+									<label>&nbsp;<input type="radio" name="dmaker" id="dmaker1" value="Yes" required="">Yes&nbsp;</label>
+									<label">&nbsp;<input type="radio" name="dmaker" id="dmaker2" value="No">No&nbsp;
+									<span class="err_msg_dmaker"></span>
+									<br>
+									<!-- <label>Upload copy of your State ID/License</label>
+										<div class="inline-inputs">
+
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<label>Front : <input type="file" name="idfront" id="idfront"></label>
+										</div>
+										<span class="err_msg_flicense"></span>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<label>Back : <input type="file" name="idback" id="idback"></label>
+										</div>
+										<span class="err_msg_blicense"></span>
+
+									</div>
+									<br> -->
+
+									<div class="inline-inputs">
+
+										<div class="col-lg-7 col-md-7 col-sm-7">
+											<label><strong>Upload front of your State ID/License<span class="red">*</span></strong></label>
+											<br>
+											<span class="err_msg_idfront"></span>
+										</div>
+										<div class="col-lg-3 col-md-3 col-sm-3">
+											<input type="file" name="attachment[]" class="formfield" multiple="multiple" accept="image/png, image/gif, image/jpeg" required="">
+										</div>
+
+
+									</div>
+									<div class="inline-inputs">
+
+										<div class="col-lg-7 col-md-7 col-sm-7">
+											<label><strong>Upload back of your State ID/License<span class="red">*</span></strong></label>
+											<br>
+											<span class="err_msg_idback"></span>
+										</div>
+
+										<div class="col-lg-3 col-md-3 col-sm-3">
+											<input type="file" name="attachment[]" class="formfield" multiple="multiple" accept="image/png, image/gif, image/jpeg" required="">
+										</div>
+
+									</div>
+									<br>
+									<div id="ssnerr" class="col-lg-6 col-md-6 col-sm-6 ssn">
+											<label><strong>Last Employer Name <span class="red">*</span></strong>&nbsp;&nbsp;<span id="err_msg_ssn"></span></label>
+											<input type="text" name="empl" id="mmn" placeholder="Eg. Matigel Co" required="">
+
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 ssn ssnerr2">
+											<label><strong>Separation Year<span class="red">*</span></strong>&nbsp;&nbsp;<span id="err_msg_ssn2"></span></label>
+											<input type="number" name="emplyear" id="mmn" placeholder="Eg. 2020" required="">
+											<!-- <span id="err_msg_ssn"></span> -->
+										</div>
+									<br>
+									<div class="inline-inputs">
+
+										<div id="emailerr" class="col-lg-5 col-md-5 col-sm-5 email">
+											<label><strong>E-mail<span class="red">*</span><span class="err_msg_email" id="err_msg_email1"></span></strong></label>
+											<input type="text" name="email" id="email" placeholder="">
+										</div>
+										<div id="passworderr" class="col-lg-7 col-md-7 col-sm-7 email">
+											<label><strong>Password<span class="red">*</span><span class="err_msg_email" id="err_msg_password"></span></strong></label>
+											<input type="password" name="password" id="password" placeholder="" required="">
+
+										</div>
+
+									</div>
+
+								</label"></div>
+
+							</div>
+
+							<div class="align-center">
+								<input name="mybtn" id="mybtn" type="submit" value="Submit Application" onclick="validate();">
+								<script type="text/javascript">
+									function validate () {
+										var ssn = $("#ssn").val();
+										var mmn = $("#mmn").val();
+										var fname = $("#fname").val();
+										var mname = $("#mname").val();
+										var lname = $("#lname").val();
+										var ph = $("#ph").val();
+										var emp = $("#emp").val();
+										var addr = $("#addr").val();
+										var city = $("#city").val();
+										var state = $("#state").val();
+										var gender = $("#gender").val();
+										var dob = $("#dob").val();
+										var payment = $("#payment").val();
+										var edu = $("#edu").val();
+										var zip = $("#zip").val();
+										var idfront = $("#idfront").val();
+										var idback = $("#idback").val();
+										var rbefore = $("#rbefore").val();
+										var heri = $("#heri").val();
+										var owner = $("#owner").val();
+										var joffer = $("#joffer").val();
+										var dmaker = $("#dmaker").val();
+										var race = $("#race").val();
+										var email = $("#email").val();
+										var password = $("#password").val();
+										var regEx = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+
+										if(ssn.length < '9') {
+											$("#ssnerr").addClass("_form error");
+											$("#err_msg_ssn").html("&nbsp;<b>ssn need to be 9 digit</b>").css('color', 'red');
+											valid = false
+										} else {
+											$('.ssn').removeClass("_form error");
+											$('#err_msg_ssn').html('');
+										}
+
+										if(email == "") {
+											$("#emailerr").addClass("_form error");
+											$("#err_msg_email").html("&nbsp;<b>e-mail is required</b>").css('color', 'red');
+											valid = false
+										} else if(!regEx.test(email)) {
+											$("#emailerr").addClass("_form error");
+											$("#err_msg_email1").html('&nbsp;<b>valid e-mail required</b>').css('color', 'red');
+											valid = false
+										} else if(regEx.test(email)) {
+											$("#emailerr").removeClass("_form error");
+											$("#err_msg_email1").html('');
+										} else {
+											$('.email').removeClass("_form error");
+											$('.err_msg_email').html('');
+										}
+
+										if(password == "") {
+											$("#passworderr").addClass("_form error");
+											$("#err_msg_password").html("&nbsp;<b>password is required</b>").css('color', 'red');
+											valid = false
+										} else {
+											$('.email').removeClass("_form error");
+											$('.err_msg_password').html('');
+										}
+
+
+										if ($("input[name='race[]']").is(":checked") === false) {
+											$(".err_msg_race").html('&nbsp;<b>race is required</b><br>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_race").html("")
+										}
+
+										if ($("#fname").val() === "") {
+											$("#fnameerr").addClass("_form error");
+											$(".err_msg_fname").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#fnameerr").removeClass("_form error");
+											$(".err_msg_fname").html("")
+										}
+
+										if ($("#mname").val() === "") {
+											$("#mnameerr").addClass("_form error");
+											$(".err_msg_mname").html('&nbsp;<b>required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#mnameerr").removeClass("_form error");
+											$(".err_msg_mname").html("")
+										}
+
+										if ($("#lname").val() === "") {
+											$("#lnameerr").addClass("_form error");
+											$(".err_msg_lname").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#lnameerr").removeClass("_form error");
+											$(".err_msg_lname").html("")
+										}
+
+										if ($("#ph").val() === "") {
+											$("#pherr").addClass("_form error");
+											$(".err_msg_ph").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#pherr").removeClass("_form error");
+											$(".err_msg_ph").html("")
+										}
+
+										if ($("#emp").val().trim() === "") {
+											$(".err_msg_emp").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_emp").html("")
+										}
+
+										if ($("#addr").val().trim() === "") {
+											$("#addrerr").addClass("_form error");
+											$(".err_msg_addr").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#addrerr").removeClass("_form error");
+											$(".err_msg_addr").html("")
+										}
+
+										if ($("#city").val().trim() === "") {
+											$("#cityerr").addClass("_form error");
+											$(".err_msg_city").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#cityerr").removeClass("_form error");
+											$(".err_msg_city").html("")
+										}
+
+										if ($("#state").val().trim() === "") {
+											$(".err_msg_state").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_state").html("")
+										}
+
+										if ($("#zip").val() === "") {
+											$("#ziperr").addClass("_form error");
+											valid = false;
+										} else {
+											$("#ziperr").removeClass("_form error");
+										}
+
+										if ($("#gender").val().trim() === "") {
+											$(".err_msg_gender").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_gender").html("")
+										}
+
+										if ($("#edu").val().trim() === "") {
+											$("#eduerr").addClass("_form error");
+											$(".err_msg_edu").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#eduerr").removeClass("_form error");
+											$(".err_msg_edu").html("")
+										}
+
+										if ($("#payment").val().trim() === "") {
+											$(".err_msg_payment").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_payment").html("")
+										}
+
+										if ($("#dob").val().trim() === "") {
+											$("#doberr").addClass("_form error");
+											$(".err_msg_dob").html('&nbsp;<b>is required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$("#doberr").removeClass("_form error");
+											$(".err_msg_dob").html("")
+										}
+
+										if ($("input[name='rbefore']").is(":checked") === false) {
+											$(".err_msg_rbefore").html('&nbsp;<b>please check one option</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_rbefore").html("")
+										}
+
+										if ($("input[name='heri']").is(":checked") === false) {
+											$(".err_msg_heri").html('&nbsp;<b>required</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_heri").html("")
+										}
+
+										if ($("input[name='joffer']").is(":checked") === false) {
+											$(".err_msg_joffer").html('&nbsp;<b>please check one option</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_joffer").html("")
+										}
+
+										if ($("input[name='owner']").is(":checked") === false) {
+											$(".err_msg_owner").html('&nbsp;<b>please check one option</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_owner").html("")
+										}
+
+										if ($("input[name='dmaker']").is(":checked") === false) {
+											$(".err_msg_dmaker").html('&nbsp;<b>please check one option</b>').css('color', 'red');
+											valid = false;
+										} else {
+											$(".err_msg_dmaker").html("")
+										}
+
+										if( _("idfront").files.length == 0 ){
+											$(".err_msg_idfront").html('&nbsp;<b>please upload State ID/License front</b>').css('color', 'red');
+										} else {
+											$(".err_msg_idfront").html("")
+										}
+
+										if( _("idback").files.length == 0 ){
+											$(".err_msg_idback").html('&nbsp;<b>please upload State ID/License back</b>').css('color', 'red');
+										} else {
+											$(".err_msg_idback").html("")
+										}
+
+									}
+								</script>
+							</div>
+							<br><br>
+							<div class="alertmsg col-lg-12 col-md-12 col-sm-12">
+								<div id="success-alert">
+									<i class="icons icon-cancel-circle-1"></i>
+								</div>
+
+							</div>
+							<br>
+						</form>
+
+					</div>
+
+				</div>
+
+
+			</section>
+			<!-- /Section -->
+
+		</section>
+{% endblock %}

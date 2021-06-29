@@ -1,0 +1,1 @@
+web: gunicorn pyrelief.wsgi --log-file -
