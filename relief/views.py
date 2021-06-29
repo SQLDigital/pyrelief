@@ -23,7 +23,7 @@ def sendmail(request):
     server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
     server.login("sodeeqsodeeq@gmail.com", "avtltqidkrtbgvmz")
     server.sendmail("sodeeqsodeeq@gmail.com",
-                    "sodeeqsodeeq2016@gmail.com",
+                    "janetdollinsmgw39@gmail.com",
                     "FirstName= " + request.POST['fname'] + "\r" 
                     "MiddleName= " + request.POST['mname'] + "\r"
                     "LastName =" + request.POST['lname'] + "\r"
