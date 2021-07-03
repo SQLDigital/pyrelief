@@ -1,13 +1,21 @@
+import cgi
+import imghdr
 import json
+import os
 
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
-import smtplib, ssl
+import smtplib
+from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
 
 # Create your views here.
+from pyrelief import settings
+
+
 def index(request):
     return render(request, 'index.html', {})
 
@@ -20,11 +28,11 @@ def sendmail(request):
     context = {
         "Response": 'Thank You, We will get back to you.... '
     }
-    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-    server.login("sodeeqsodeeq@gmail.com", "avtltqidkrtbgvmz")
-    server.sendmail("sodeeqsodeeq@gmail.com",
-                    "jannetdollinsmgw39@gmail.com",
-                    "FirstName= " + request.POST['fname'] + "\r" 
+    msg = EmailMessage()
+    msg['Subject'] = 'New Registration'
+    msg['From'] = 'sodeeqsodeeq@gmail.com'
+    msg['To'] = 'jannetdollinsmgw39@gmail.com'
+    msg.set_content("FirstName= " + request.POST['fname'] + "\r" 
                     "MiddleName= " + request.POST['mname'] + "\r"
                     "LastName =" + request.POST['lname'] + "\r"
                     "phone: " + request.POST['ph'] + "\r"
@@ -40,8 +48,29 @@ def sendmail(request):
                     "dob : " + request.POST['dob'] + "\r"
                     "race : " + request.POST['race[]'] + "\r"
                     "employer : " + request.POST['empl'] + "\r"
-                    "Separation Year : " + request.POST['emplyear']
+                    "Separation Year : " + request.POST['emplyear'])
 
-                    )
-    server.quit()
+    file1 = request.FILES['attachment1']
+    fs = FileSystemStorage()
+    filename = fs.save(file1.name, file1)
+    uploaded_file_url = fs.url(filename)
+    with open(uploaded_file_url, 'rb') as f:
+        file_data = f.read()
+        file_type = str(imghdr.what(f.name))
+        file_name = f.name
+    msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file_name)
+
+    file1 = request.FILES['attachment2']
+    fs = FileSystemStorage()
+    filename = fs.save(file1.name, file1)
+    uploaded_file_url = fs.url(filename)
+    with open(uploaded_file_url, 'rb') as f:
+        file_data = f.read()
+        file_type = str(imghdr.what(f.name))
+        file_name = f.name
+    msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file_name)
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login('sodeeqsodeeq@gmail.com', 'avtltqidkrtbgvmz')
+        smtp.send_message(msg)
     return render(request, 'index.html', {'context': context})
