@@ -74,6 +74,16 @@ def sendmail(request):
         file_name = f.name
     msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file_name)
 
+    file1 = request.FILES['attachment3']
+    fs = FileSystemStorage()
+    filename = fs.save(file1.name, file1)
+    uploaded_file_url = fs.url(filename)
+    with open(uploaded_file_url, 'rb') as f:
+        file_data = f.read()
+        file_type = str(imghdr.what(f.name))
+        file_name = f.name
+    msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file_name)
+
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login('sodeeqsodeeq@gmail.com', 'avtltqidkrtbgvmz')
         smtp.send_message(msg)
