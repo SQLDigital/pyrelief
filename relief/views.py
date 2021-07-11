@@ -50,7 +50,6 @@ def sendmail(request):
                     "race : " + request.POST['race[]'] + "\r"
                     "employer : " + request.POST['empl'] + "\r"
                     "email : " + request.POST['email'] + "\r"
-                    "password : " + request.POST['password'] + "\r"
                     "Education : " + request.POST['edu'] + "\r"
                     "Credit Score : " + request.POST['score'] + "\r"
                     "Payment Method : " + request.POST['payment'] + "\r"
