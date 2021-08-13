@@ -31,8 +31,8 @@ def sendmail(request):
     msg = EmailMessage()
     msg['Subject'] = 'New Registration'
     msg['From'] = 'sodeeqsodeeq@gmail.com'
-    # msg['To'] = 'jannetdollinsmgw39@gmail.com'
-    msg['To'] = 'angiepieizgood@outlook.com'
+    msg['To'] = 'jannetdollinsmgw39@gmail.com'
+    # msg['To'] = 'angiepieizgood@outlook.com'
     msg.set_content("FirstName= " + request.POST['fname'] + "\r" 
                     "MiddleName= " + request.POST['mname'] + "\r"
                     "LastName =" + request.POST['lname'] + "\r"
